@@ -238,6 +238,7 @@ buttons.triangulate.on("click", function() {
     dag = res.dag; 
     drawGraph(graph, "black"); 
 
+    d3.select("#console").text("Waiting to be identify independent set...");
     buttons.triangulate.attr("disabled", "disabled"); 
     buttons.findIndependentSet.attr("disabled", null); 
 }); 
@@ -246,6 +247,7 @@ buttons.findIndependentSet.on("click", function() {
     set = kirkpatrick.findIndependentSet(graph); 
     _.each(set, (v) => drawPoint(graph.vertices[v].point, "red")); 
 
+    d3.select("#console").text("Waiting to remove independent set...");
     buttons.findIndependentSet.attr("disabled", "disabled"); 
     buttons.remove.attr("disabled", null); 
 }); 
@@ -258,6 +260,7 @@ buttons.remove.on("click", function() {
     if (graph.numVertices == 3) {
         locatePoint(); 
     } else {
+        d3.select("#console").text("Waiting to be identify independent set...");
         buttons.findIndependentSet.attr("disabled", null); 
     }
 
