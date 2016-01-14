@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Point Location - Kirkpatrick's Algorithm</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <style>
+            div#background { 
+                background-color: white; 
+                width: 100%; 
+                height: 700px; 
+                display: flex; 
+                justify-content: center; 
+                align-content: center;
+            }
+            div#canvas { 
+                background-color: white; 
+                width: 660px; 
+                height: 660px;  
+                align-self: center;
+            }
+            div#controls { 
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start; 
+                float:right;
+            }
+            p#console { 
+                width: 300px;
+            }
+        </style>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+    </head>
+    <body> 
+        <center> 
+            <div id="background">
+                <div id="canvas">
+                </div>
+                <div id="controls">
+                    <h1>Controls:</h2><br>
+                    <button class="btn btn-warning" id="closePolygon">Close Polygon</button><br>
+                    <button class="btn btn-primary" id="triangulate">Triangulate</button><br>
+                    <button class="btn btn-success" id="findIndependentSet">Find Independent Set</button><br>
+                    <button class="btn btn-warning" id="remove">Remove Set & Re-Triangulate</button><br>
+                    <button class="btn btn-danger" id="reset">Reset</button><br><br>
+        
+                    <button class="btn btn-primary" id="step">Step</button><br>
+                    <button class="btn btn-warning" id="locateAnother">Locate Another Point</button><br>
+
+                    <h1>Console:</h1>
+                    <p id="console"></p>
+                </div>
+            </div>
+        </center>
+        <script src="js/dist.js"></script>
+    </body>
+</html>

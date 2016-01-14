@@ -1,0 +1,16 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "watchify js/index.js -o js/dist.js -v"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "earcut": "^2.0.7",
+    "underscore": "^1.8.3"
+  }
+}
