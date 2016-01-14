@@ -214,7 +214,7 @@ buttons.triangulate.on("click", function() {
     dag = res.dag; 
     drawGraph(graph, "black"); 
 
-    d3.select("#console").text("Waiting to be identify independent set...");
+    d3.select("#console").text("Waiting to identify independent set...");
     buttons.triangulate.attr("disabled", "disabled"); 
     buttons.findIndependentSet.attr("disabled", null); 
 }); 
@@ -236,7 +236,7 @@ buttons.remove.on("click", function() {
     if (graph.numVertices == 3) {
         locatePoint(); 
     } else {
-        d3.select("#console").text("Waiting to be identify independent set...");
+        d3.select("#console").text("Waiting to identify independent set...");
         buttons.findIndependentSet.attr("disabled", null); 
     }
 
