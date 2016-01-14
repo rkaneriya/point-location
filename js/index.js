@@ -1,3 +1,7 @@
+/* 
+    SVG drawing and GUI control methods
+*/
+
 var _ = require('underscore'); 
 var util = require('./util'); 
 var kirkpatrick = require('./point-location'); 
@@ -82,7 +86,6 @@ var drawTriangulation = function(tris, graph) {
 }; 
 
 var drawGraph = function(graph, color) { 
-    // console.log(graph); 
     // draw all points 
     _.each(graph.vertices, function(v) {
         if (!v.removed) 
@@ -91,16 +94,12 @@ var drawGraph = function(graph, color) {
 
     // draw all edges 
     _.each(graph.adj, function(nbors, i) { 
-        // if (!graph.vertices[i].removed) {
-            var p1 = graph.vertices[i].point; 
-            var p2; 
-            _.each(nbors, function(n) { 
-                // if (!graph.vertices[n].removed) {
-                    p2 = graph.vertices[n].point;
-                    drawLine(p1, p2, color); 
-                // }
-            });
-        // }
+        var p1 = graph.vertices[i].point; 
+        var p2; 
+        _.each(nbors, function(n) { 
+            p2 = graph.vertices[n].point;
+            drawLine(p1, p2, color); 
+        });
     }); 
 }; 
 
@@ -304,7 +303,6 @@ buttons.step.on("click", function() {
     highlightTriangle(pts, "yellow", "yellow"); 
 
     var triangulation = graph.triangulations[len - 1 - step_count];
-    console.log(triangulation); 
     drawTriangulation(triangulation, graph); 
 
     // find next highlight 
@@ -318,7 +316,6 @@ buttons.step.on("click", function() {
         }); 
     }
 
-    console.log("next higlight = " + highlight); 
     if (highlight == undefined) { 
         clear();
 

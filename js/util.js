@@ -1,4 +1,7 @@
-/* UTILITY FUNCTIONS - for testing containment/intersection */ 
+/* 
+    Utility functions for testing point containment and side/triangle intersections 
+*/ 
+
 var _ = require('underscore'); 
 
 var ccw = function(a, b, c) { 

@@ -1,3 +1,7 @@
+/* 
+    Directed acyclic graph (for storing triangle hierachy)
+*/ 
+
 var _ = require('underscore'); 
 
 var DAG = function() {

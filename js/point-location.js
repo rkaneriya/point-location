@@ -1,3 +1,8 @@
+/* 
+    Contains code for Planar Graph, triangulation, finding independent sets, 
+    and removing vertices from graph (creating DAG structure) 
+*/
+
 var _ = require('underscore'); 
 var earcut = require('earcut'); 
 var util = require('./util'); 
@@ -24,7 +29,7 @@ var Vertex = function(a, b) {
     this.removed = false; 
 }; 
 
-// input = 3 vertex ids  
+// creates triangle from 3 vertex ids   
 var Triangle = function(a, b, c) { 
     this.v1 = a; 
     this.v2 = b; 
@@ -41,7 +46,6 @@ Vertex.prototype.removeTriangle = function(triangle_id) {
     this.triangles = _.reject(this.triangles, function(t) { return t == triangle_id; }); 
 }; 
 
-// return unique of id of new vertex
 PlanarGraph.prototype.addVertex = function(a, b) {
     var v = new Vertex(a, b);
     v.id = this.vertices.length;
@@ -77,8 +81,8 @@ PlanarGraph.prototype.removeDirectedEdge = function(v1, v2) {
     this.adj[v1] = _.reject(this.adj[v1], function(v) { return v == v2; }); 
 };  
 
-// removes the vertex from its connections in the graph (doesn't delete vertex itself)
-// return array of old triangle ids and array of bounding vertex ids (polygon to be re-triangulated)
+// removes the vertex from its connections in the graph
+// returns array of old triangle ids and array of bounding vertex ids (polygon to be re-triangulated)
 PlanarGraph.prototype.removeVertex = function(v) { 
     this.vertices[v].removed = true; 
     this.numVertices--;
@@ -95,7 +99,6 @@ PlanarGraph.prototype.removeVertex = function(v) {
     // copy v's triangles (old triangles)
     var old_triangle_ids = _.map(this.vertices[v].triangles, function(t) { return t; }); 
 
-    // collect bounding vertices in CW order
     var polygon = []; 
 
     // array of arrays of vertex ids (without v)
@@ -104,6 +107,7 @@ PlanarGraph.prototype.removeVertex = function(v) {
         return _.reject(_.values(t), function(v2) { return v2 == v; });          
     }); 
 
+    // collect bounding vertices in CW order (polygon to be re-triangulated)
     var next = _.first(triangles);
     polygon.push(_.first(next)); 
     var query = _.last(next); 
@@ -275,12 +279,10 @@ var removeVertices = function(graph, verts, dag) {
 
         // remove old triangles from previous triangulation
         triangles = _.reject(triangles, function(t) { return _.contains(res.old_triangles, t); }); 
-        console.log("removing old ", res.old_triangles); 
         var new_triangles = triangulate(graph, res.polygon); 
         
         // add new triangles to triangulation 
         _.each(new_triangles, (t) => triangles.push(t)); 
-        console.log("adding new: ", new_triangles); 
 
         // compare old/new triangles to form links in DAG 
         _.each(res.old_triangles, function(o) { 
@@ -291,8 +293,6 @@ var removeVertices = function(graph, verts, dag) {
             }); 
         }); 
     }); 
-
-    console.log(dag, graph.triangulations); 
 
     graph.triangulations.push(triangles); // save as next triangulation
 }; 
