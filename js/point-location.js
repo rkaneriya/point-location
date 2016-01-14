@@ -4,14 +4,13 @@
 */
 
 var _ = require('underscore'); 
-var earcut = require('earcut'); 
+var earcut = require('earcut'); // triangulation library  
 var util = require('./util'); 
 var DAG = require('./dag'); 
 
 var PlanarGraph = function() {
-    // parallel arrays 
     this.vertices = []; 
-    this.adj = [];  
+    this.adj = []; // adjacency list 
     this.all_triangles = []; // all distinct triangles created 
     this.triangulations = []; // array of lists containing triangulations at each level (triangle ids)
     this.numVertices = 0; 
