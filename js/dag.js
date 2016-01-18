@@ -5,7 +5,7 @@
 var _ = require('underscore'); 
 
 var DAG = function() {
-    this.adj = {}; // maps to t_ids to adjacency lists  
+    this.adj = {}; // maps triangle ids to adjacency lists  
 }; 
 
 DAG.prototype.addDirectedEdge = function(n1, n2) {
