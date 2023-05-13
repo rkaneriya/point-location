@@ -1,5 +1,7 @@
 # Kirkpatrick's Point Location
-An interactive implementation of Kirkpatrick's point location algorithm for COS 451 (Computational Geometry). View the program at http://rkaneriya.github.io/point-location. 
+An interactive implementation of Kirkpatrick's point location algorithm for COS 451 (Computational Geometry). 
+
+Play with it [here](http://rkaneriya.github.io/point-location), or [watch a demo](https://youtu.be/xQZackH69BQ). Read the original paper by Kirkpatrick [here](https://www.cs.princeton.edu/courses/archive/fall05/cos528/handouts/Optimal%20Search%20In%20Planar.pdf).
 
 --- 
 
